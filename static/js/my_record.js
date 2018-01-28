@@ -84,7 +84,7 @@ function createDownloadLink(blob) {
                     });
                     // alert("Nói rõ lên nào!");
                 }else{
-                    document.getElementById('text').value += data + " ";
+                    document.getElementById('text').value = data + " ";
                     action.innerHTML = "<small>X Ử LÝ XONG - NHẤN START ĐỂ TIẾP TỤC</small>";
                 }
                 // next = true;

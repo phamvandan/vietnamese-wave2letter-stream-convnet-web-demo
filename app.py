@@ -67,7 +67,7 @@ def save_file_from_upload():
     os.remove(path_to_file)
     path_to_file = new_name
     text = w2l.process_file(path_to_file)
-    #os.remove(path_to_file)
+    os.remove(path_to_file)
     return text
 
 @app.route("/record_audio", methods=['POST', 'GET'])
