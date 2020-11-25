@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Thu dữ liệu giọng nói</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+<h1>Xin chào {{user_name}}</h1>
+<form action="">
+    <label for="id">Chọn id</label>
+    <select name="id_1" id="id_1">
+        {% for id in list_id %}
+        <option value={{id}}>{{id}}</option>
+        {% endfor %}
+    </select>
+    <select name="id_2" id="id_2">
+        {% for id in list_id %}
+        <option value={{id}}>{{id}}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <input type="submit" value="Bắt đầu thu âm">
+</form>
+<script src="/static/js/audios.js"></script>
+</body>
+</html>

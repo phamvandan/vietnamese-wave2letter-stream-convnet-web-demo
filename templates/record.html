@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Recording</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+    var id = {{id}};
+    var user_name = '{{user_name}}';
+    </script>
+    <script type="text/javascript" src="/static/js/recorder.js"></script>
+    <style>
+        table, th, td {
+  border: 1px solid black;
+}
+    </style>
+</head>
+<body>
+<h1>Xin chào {{user_name}}</h1>
+<h2>Talk anything you want</h2>
+<button id="recordButton">Record</button>
+            <!--            <button id="pauseButton" disabled>Pause</button>-->
+<button id="stopButton" disabled>Stop</button>
+<p id="text"></p>
+
+<!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+<!--<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>-->
+    <script type="text/javascript" src="/static/js/app.js"></script>
+</body>
+</html>

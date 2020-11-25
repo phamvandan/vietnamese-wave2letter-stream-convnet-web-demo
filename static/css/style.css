@@ -1,0 +1,358 @@
+html {
+  font-size: 90%;
+}
+body {
+  line-height: 1.5;
+  font-family: sans-serif;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color:black;
+  margin:2em;
+}
+
+h1 {
+  text-decoration: underline red;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+  font-size: 220%;
+  font-weight: bold;
+}
+
+h2 {
+  font-weight: bold;
+  color: #005A9C;
+  font-size: 140%;
+  text-transform: uppercase;
+}
+
+p {
+  margin: 1em 0;
+}
+
+pre {
+  padding: 0px;
+  border:0px;
+  border-radius: 0px;
+  max-height: 100rem;
+  text-size-adjust: 20%;
+}
+
+red {
+  color: red;
+}
+iframe {
+  max-width: 500px;
+  max-height: 50px;
+}
+a {
+  color: #337ab7;
+  cursor: pointer;
+  font-size: 20px
+}
+p {
+  margin-top: 1rem;
+}
+a:hover {
+  color:#23527c;
+}
+a:visited {
+  color: #8d75a3;
+}
+#username {
+  color: black;
+  font-size: 20px;
+}
+#controls {
+  /* position: fixed; */
+  display: flex;
+  margin-top: 2rem;
+}
+button {
+  flex-grow: 1;
+  height: 2.5rem;
+  min-width: 5rem;
+  max-width: 10rem;
+  border: none;
+  border-radius: 0.15rem;
+  background: #ed341d;
+  margin-left: 2px;
+  box-shadow: inset 0 -0.15rem 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+button:hover, button:focus {
+  outline: none;
+  background: #c72d1c;
+}
+button::-moz-focus-inner {
+  border: 0;
+}
+button:active {
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2);
+  line-height: 3rem;
+}
+button:disabled {
+  pointer-events: none;
+  background: lightgray;
+}
+button:first-child {
+  margin-left: 0;
+}
+audio {
+  display: block;
+  width: 100%;
+  margin-top: 0.2rem;
+}
+li {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  /*max-width: 1500px;*/
+}
+th, td {
+  padding: 15px;
+  border: 1px solid black;
+}
+.inactive {
+  background: lightgray;
+}
+.inactive:hover, .inactive:focus {
+  outline: none;
+  background: gray;
+}
+.done {
+  background: green !important;
+}
+.done:hover, .done:focus {
+  outline: none;
+  background: green !important;
+}
+.redbtn {
+  background: red !important;
+}
+.redbtn:hover, .redbtn:focus {
+  outline: none;
+  background: darkred !important;
+}
+#username {
+  color: #005A9C;
+  font-weight: bold;
+}
+#loginA {
+  margin-left: 20px;
+  color: #337ab7;
+}
+#colId {
+  max-width: 4rem;
+}
+#colAudio {
+  min-width: 20rem;
+}
+#colTrans {
+  min-width: 20rem;
+}
+#resizeCol {
+  max-width: 50rem;
+}
+#textTrans {
+  min-width: 100%;
+  min-height: 5rem;
+}
+table {
+  max-width: 100rem;
+}
+
+#editBtn, #saveBtn, #delBtn {
+  max-width: 2rem;
+}
+
+#collect {
+  display: flex;
+  margin-right: 5rem;
+  max-height: 5rem;
+}
+
+#status {
+  flex-grow: 1;
+  height: 2.5rem;
+  min-width: 2rem;
+  max-width: 15rem;
+  width: 10rem;
+  border: none;
+  border-radius: 0.15rem;
+  background: gray;
+  margin-left: 200px;
+  margin-top: 0px;
+  box-shadow: inset 0 -0.15rem 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#success {
+  flex-grow: 1;
+  height: 2.5rem;
+  min-width: 2rem;
+  max-width: 15rem;
+  width: 10rem;
+  border: none;
+  border-radius: 0.15rem;
+  background: green;
+  margin-left: 200px;
+  margin-top: 0px;
+  box-shadow: inset 0 -0.15rem 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#failed {
+  flex-grow: 1;
+  height: 2.5rem;
+  min-width: 2rem;
+  max-width: 15rem;
+  width: 10rem;
+  border: none;
+  border-radius: 0.15rem;
+  background: red;
+  margin-left: 200px;
+  margin-top: 0px;
+  box-shadow: inset 0 -0.15rem 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#saveNextBtn {
+  min-width: 200px;
+  margin-left: 1200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#filter {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#start {
+  max-height: 20px;
+  max-width: 70px;
+}
+#filtBtn, #nextBtn, #backBtn{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-width: 100px;
+}
+#header {
+  position: fixed
+}
+#list {
+  margin-left: 400px;
+}
+.cb {
+  background: gray;
+}
+.cb:hover, .cb:focus {
+  outline: none;
+  background: rgb(68, 68, 68);
+}
+/* Pagination links */
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+  background-color: red;
+  color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {background-color: #ddd;}
+/* Customize the label (the container) */
+.checkbox {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.checkbox input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.checkbox .checkmark:after {
+  top: 8px;
+  left: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: white;
+}
+#message {
+  margin-top: 0rem;
+}

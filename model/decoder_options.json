@@ -1,0 +1,12 @@
+{
+  "beamSize" : 100,
+  "beamSizeToken" : 100,
+  "beamThreshold" : 100,
+  "lmWeight" : 0.674,
+  "wordScore" : 0.628,
+  "unkScore" : -Infinity,
+  "silScore" : 0.0,
+  "eosScore" : 0.0,
+  "logAdd" : false,
+  "criterionType" : "CTC"
+}
