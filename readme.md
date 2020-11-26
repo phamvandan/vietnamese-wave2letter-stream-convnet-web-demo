@@ -17,5 +17,8 @@
 Change db host ip ./statis/js/config.json
 ### Run
 ```
+    docker exec -it w2l bash
+    cd /root/src/
+    export PYTHONIOENCODING=utf8
     python3 app.py
 ```
