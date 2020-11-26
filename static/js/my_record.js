@@ -10,6 +10,12 @@ var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext; //audio context to help us record
 var constraints = {audio: true, video: false};
 var stream_obj = navigator.mediaDevices.getUserMedia(constraints);
+var next = true;
+setInterval(function() {
+    if(next === true) {
+        runSpeechRecognition();
+    }
+}, 0);
 
 function startRecording() {
     console.log("start recording");
@@ -37,15 +43,10 @@ function startRecording() {
 //    rec.stop();
 }
 
-var next = true;
-setInterval(function() {
-    if(next === true) {
-        runSpeechRecognition();
-    }
-}, 0);
-
 function stopRecording() {
 //    rec = "stop recording"
+    console.log("next");
+    console.log(next);
     console.log("stop recording and save audio");
     //tell the recorder to stop the recording
     rec.stop();
@@ -62,7 +63,6 @@ function createDownloadLink(blob) {
 //    if (Array.isArray(blob) && blob.length) {
     let xhr = new XMLHttpRequest();
     var fd = new FormData();
-    console.log(blob[1]);
     fd.append("audio_data", blob, filename);
     xhr.open("POST", "https://"+dbHost+"/save_audios", true);
     xhr.send(fd);
