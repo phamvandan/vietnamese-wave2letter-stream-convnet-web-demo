@@ -28,11 +28,12 @@ class w2l_processing:
             output = output.decode('utf-8')
             print(output)
             if not skip:
-                output = output.split(",")[-1].replace("\n", "")
+                output = output.split(",")[-1].replace("\n", "").strip()
                 print(output)
                 text += " " + output
             if "transcription" in output:
                 skip = False
+        text = text.strip()
         return  text
 
     def kill_process(self):

@@ -37,6 +37,13 @@ function startRecording() {
 //    rec.stop();
 }
 
+var next = true;
+setInterval(function() {
+    if(next === true) {
+        runSpeechRecognition();
+    }
+}, 0);
+
 function stopRecording() {
 //    rec = "stop recording"
     console.log("stop recording and save audio");
@@ -47,6 +54,8 @@ function stopRecording() {
     //create the wav blob and pass it on to createDownloadLink
     rec.exportWAV(createDownloadLink);
 }
+
+
 function createDownloadLink(blob) {
     console.log("exporting");
     var filename = ".wav";
@@ -60,21 +69,16 @@ function createDownloadLink(blob) {
     var myurl = "https://"+dbHost+"/speech_to_text";
     $.get(myurl, function(data, status){
         document.getElementById('text').value += data + " ";
-        alert(data);
     });
+    next = true;
     // alert("tải lên thành công");
     // window.location = "/record_audio";
 //    }else{
 //        alert("Chưa đủ file thu âm!");
 //    }
 }
-var next = true;
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-setInterval(function() {
-    if(next === true) {
-        runSpeechRecognition();
-    }
-}, 0);
+
 /* JS comes here */
 function runSpeechRecognition() {
     // get output div reference
@@ -94,7 +98,6 @@ function runSpeechRecognition() {
         action.innerHTML = "<small>stopped listening, hope you are done...</small>";
         recognition.abort();
         stopRecording();
-        next = true;
     };
 
     // This runs when the speech recognition service returns result

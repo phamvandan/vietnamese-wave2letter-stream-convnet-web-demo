@@ -33,9 +33,10 @@ def init_and_redirect():
 def record_audio():
     return render_template("my_record.html")
 
-
+import time
 @app.route("/speech_to_text", methods=['GET'])
 def speech_to_text():
+    time.sleep(1)
     print("Processing...")
     path_to_file = os.path.join(session["upload_folder"], str(session["save_index"]) + ".wav")
     text = w2l.process_file(path_to_file)
