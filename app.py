@@ -33,8 +33,10 @@ def init_and_redirect():
 def record_audio():
     return render_template("my_record.html")
 
+
 @app.route("/speech_to_text", methods=['GET'])
 def speech_to_text():
+    print("Processing...")
     path_to_file = os.path.join(session["upload_folder"], str(session["save_index"]) + ".wav")
     text = w2l.process_file(path_to_file)
     session["save_index"] = session["save_index"] + 1
@@ -49,15 +51,16 @@ def save_audios():
             flash('No file selected for uploading')
             return redirect(request.url)
         else:
-            # text = ""
+            text = ""
             for file in files:
                 if file:
                     path_to_file = os.path.join(session["upload_folder"], str(session["save_index"]) + ".wav")
                     file.save(path_to_file)
                     print("Saved", path_to_file)
-            # return text
+            return text
 
 
 if __name__ == "__main__":
     app.debug = True
     app.run(host="0.0.0.0", port=5001, ssl_context=('cert.pem', 'key.pem'))
+

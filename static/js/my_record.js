@@ -47,7 +47,6 @@ function stopRecording() {
     //create the wav blob and pass it on to createDownloadLink
     rec.exportWAV(createDownloadLink);
 }
-var CONFIG=require('./config.json');
 function createDownloadLink(blob) {
     console.log("exporting");
     var filename = ".wav";
@@ -56,9 +55,9 @@ function createDownloadLink(blob) {
     var fd = new FormData();
     console.log(blob[1]);
     fd.append("audio_data", blob, filename);
-    xhr.open("POST", "https://"+CONFIG.dbHost+"/save_audios", true);
+    xhr.open("POST", "https://"+dbHost+"/save_audios", true);
     xhr.send(fd);
-    var myurl = "https://"+CONFIG.dbHost+"/speech_to_text";
+    var myurl = "https://"+dbHost+"/speech_to_text";
     $.get(myurl, function(data, status){
         document.getElementById('text').value += data + " ";
         alert(data);

@@ -26,6 +26,7 @@ class w2l_processing:
                 print("FINISHING")
                 break
             output = output.decode('utf-8')
+            print(output)
             if not skip:
                 output = output.split(",")[-1].replace("\n", "")
                 print(output)
