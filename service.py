@@ -29,7 +29,6 @@ class w2l_processing:
             print(output)
             if not skip:
                 output = output.split(",")[-1].replace("\n", "").strip()
-                print(output)
                 text += " " + output
             if "transcription" in output:
                 skip = False
