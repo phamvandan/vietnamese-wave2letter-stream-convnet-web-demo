@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<style>
+			/* CSS comes here */
+			body {
+			    font-family: arial;
+			}
+			button {
+			    padding:10px;
+			    background-color:#6a67ce;
+			    color: #FFFFFF;
+			    border: 0px;
+			    cursor:pointer;
+			    border-radius: 5px;
+			}
+			#output {
+			    background-color:#F9F9F9;
+			    padding:10px;
+			    width: 100%;
+			    margin-top:20px;
+			    line-height:30px;
+			}
+			.hide {
+			    display:none;
+			}
+			.show {
+			    display:block;
+			}
+			textarea
+			{
+			  width:100%;
+			}
+			.textwrapper
+			{
+			  border:1px solid #999999;
+			  margin:5px 0;
+			  padding:3px;
+			}
+		</style>
+<!--		<script src="jquery-3.5.1.min.js"></script>-->
+        <script type="text/javascript" src="/static/js/ajax_lib.js"></script>
+{#		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
+		<title>Speech to Text</title>
+	</head>
+	<body >
+		<h2>VietNamese Speech to Text FROM UPLOADING FILE</h2>
+        <p>*.wav, *.flac, *.mp3</p>
+        <form id="upload-file" method="post" enctype="multipart/form-data">
+                <input type="file" id="filename" name="filename">
+				<button id="upload-file-btn" type="button">Upload</button>
+<!--                <input type="submit" value="Process" formmethod="post" formenctype="multipart/form-data" formaction="/save_file_from_upload">-->
+        </form>
+        <div class="textwrapper"><textarea rows="20" cols="100%" style="height:1em;" id="text" name="text"></textarea></div>
+		<script>
+			$(function() {
+				$('#upload-file-btn').click(function() {
+					var form_data = new FormData($('#upload-file')[0]);
+					$.ajax({
+						type: 'POST',
+						url: '/save_file_from_upload',
+						data: form_data,
+						contentType: false,
+						cache: false,
+						processData: false,
+						success: function(data) {
+							document.getElementById("text").value = data;
+							alert(data);
+						},
+					});
+				});
+			});
+			var observe;
+			if (window.attachEvent) {
+				observe = function (element, event, handler) {
+					element.attachEvent('on'+event, handler);
+				};
+			}
+			else {
+				observe = function (element, event, handler) {
+					element.addEventListener(event, handler, false);
+				};
+			}
+			function init () {
+				var text = document.getElementById('text');
+				function resize () {
+					text.style.height = 'auto';
+					text.style.height = text.scrollHeight+'px';
+				}
+				/* 0-timeout to get the already changed text */
+				function delayedResize () {
+					window.setTimeout(resize, 0);
+				}
+				observe(text, 'change',  resize);
+				observe(text, 'cut',     delayedResize);
+				observe(text, 'paste',   delayedResize);
+				observe(text, 'drop',    delayedResize);
+				observe(text, 'keydown', delayedResize);
+
+				text.focus();
+				text.select();
+				resize();
+			}
+		</script>
+	</body>
+</html>

@@ -26,8 +26,36 @@ def init_and_redirect():
     if os.path.exists(session["upload_folder"]):
         shutil.rmtree(session["upload_folder"])
     os.mkdir(session["upload_folder"])
-    return redirect("/record_audio", )
+    return redirect("/upload_file", )
 
+@app.route("/upload_file", methods=['POST', 'GET'])
+def upload_file():
+    return render_template("upload.html")
+
+from pydub import AudioSegment
+
+def convert_to_wav(filepath):
+    new_name = filepath.split(".")[0]+".wav"
+    AudioSegment.from_file(file=filepath, sample_width=2, channels=1, frame_rate=16000).export(new_name, format='wav')
+    return new_name
+
+@app.route("/save_file_from_upload", methods=['POST'])
+def save_file_from_upload():
+    if 'filename' not in request.files:
+        flash('No file part')
+        return "error"
+    file = request.files['filename']
+    path_to_file = os.path.join(session["upload_folder"], file.filename)
+    if ".wav" not in file.filename and ".flac" not in file.filename and ".mp3" not in file.filename:
+        return "error"
+    file.save(path_to_file)
+    text = ""
+    new_name = convert_to_wav(path_to_file)
+    os.remove(path_to_file)
+    path_to_file = new_name
+    text = w2l.process_file(path_to_file)
+    os.remove(path_to_file)
+    return text
 
 @app.route("/record_audio", methods=['POST', 'GET'])
 def record_audio():
@@ -63,5 +91,6 @@ def save_audios():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host="0.0.0.0", port=5001, ssl_context=('cert.pem', 'key.pem'))
+    # app.run(host="0.0.0.0", port=5001, ssl_context=('cert.pem', 'key.pem'))
+    app.run(host="0.0.0.0", port=5001)
 

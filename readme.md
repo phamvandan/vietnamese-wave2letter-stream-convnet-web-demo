@@ -27,6 +27,8 @@ Change db host ip ./statis/js/config.js
 ### Run
 ```
     docker exec -it w2l bash
+    apt update
+    apt install ffmpeg
     cd /root/src/
     export PYTHONIOENCODING=utf8
     python3 app.py
