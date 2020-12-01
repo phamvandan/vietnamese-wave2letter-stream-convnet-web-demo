@@ -33,3 +33,12 @@ Change db host ip ./statis/js/config.js
     export PYTHONIOENCODING=utf8
     python3 app.py
 ```
+
+## Test with file only
+```
+    python3 service.py
+```
+**Go to browser**
+```
+    ex: ....:5001?filepath=/path/to/audio/file.
+```
