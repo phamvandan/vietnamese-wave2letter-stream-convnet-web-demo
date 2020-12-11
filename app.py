@@ -74,6 +74,10 @@ def save_file_from_upload():
 def record_audio():
     return render_template("my_record.html")
 
+@app.route("/record_audio_auto", methods=['POST', 'GET'])
+def record_audio_auto():
+    return render_template("my_record_auto.html")
+
 import time
 @app.route("/speech_to_text", methods=['GET'])
 def speech_to_text():

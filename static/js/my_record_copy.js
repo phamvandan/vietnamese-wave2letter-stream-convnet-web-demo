@@ -14,16 +14,16 @@ $(document).ready(function() {
     $("#success-alert").hide();
   });
 
-// var next = true;
-// setInterval(function() {
-//     if(next === true) {
-//         action.innerHTML = "YÊN LẶNG QUÁ, NÓI ĐI NÀO!";
-//         runSpeechRecognition();
-//     }
-// }, 0);
+var next = true;
+setInterval(function() {
+    if(next === true) {
+        next = false;
+        action.innerHTML = "YÊN LẶNG QUÁ, NÓI ĐI NÀO!";
+        runSpeechRecognition();
+    }
+}, 0);
 
 function startRecording() {
-    action.innerHTML = "<small>ĐANG LẮNG NGHE BẠN NÓI.</small>";
     console.log("start recording");
     var constraints = {audio: true, video: false};
     navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
@@ -51,9 +51,8 @@ function startRecording() {
 
 function stopRecording() {
 //    rec = "stop recording"
-    action.innerHTML = "<small>DỪNG LẮNG NGHE, ĐANG SPEECH TO TEXT....</small>";
-    // console.log("next");
-    // console.log(next);
+    console.log("next");
+    console.log(next);
     console.log("stop recording and save audio");
     //tell the recorder to stop the recording
     rec.stop();
@@ -85,9 +84,8 @@ function createDownloadLink(blob) {
                     // alert("Nói rõ lên nào!");
                 }else{
                     document.getElementById('text').value += data + " ";
-                    action.innerHTML = "<small>X Ử LÝ XONG - NHẤN START ĐỂ TIẾP TỤC</small>";
                 }
-                // next = true;
+                next = true;
             });
         }
     }
@@ -99,4 +97,44 @@ function createDownloadLink(blob) {
 //    }else{
 //        alert("Chưa đủ file thu âm!");
 //    }
+}
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+
+/* JS comes here */
+function runSpeechRecognition() {
+    // get output div reference
+//    var output = document.getElementById("output");
+    // get action element reference
+//    var action = document.getElementById("action");
+    // new speech recognition object
+//    do{
+    var recognition = new SpeechRecognition();
+    // This runs when the speech recognition service starts
+    // recognition.onspeechstart = function() {
+    //     console.log('Speech has been detected');
+    //   }
+    // recognition.start();
+    console.log(next);
+    recognition.onspeechstart = function() {
+        action.innerHTML = "<small>ĐANG LẮNG NGHE BẠN NÓI.</small>";
+        startRecording();
+    };
+    recognition.onspeechend = function() {
+        action.innerHTML = "<small>DỪNG LẮNG NGHE, HI VỌNG BẠN ĐÃ NÓI XONG - ĐANG SPEECH TO TEXT....</small>";
+        recognition.abort();
+        stopRecording();
+    };
+
+    // This runs when the speech recognition service returns result
+    // recognition.onresult = function(event) {
+    //     var transcript = event.results[0][0].transcript;
+    //     var confidence = event.results[0][0].confidence;
+    //     output.innerHTML = "<b>Text:</b> " + transcript + "<br/> <b>Confidence:</b> " + confidence*100+"%";
+    //     output.classList.remove("hide");
+    // };
+
+     // start recognition
+     recognition.start();
+//         console.log(next);
+//    }while(1==1);
 }

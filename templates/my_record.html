@@ -52,10 +52,12 @@
 			<!-- <button type="button" class="close" data-dismiss="alert">x</button> -->
 			<strong>BẠN HÃY NÓI TO VÀ RÕ LÊN TÍ NỮA! </strong>.
 		  </div>
-        <p><button type="button" onclick="runSpeechRecognition()">Refresh</button> &nbsp; <span id="action"></span></p>
-        <div id="output" class="hide"></div>
+		<p><button type="button" onclick="startRecording()">Start</button> &nbsp; <span id="action"></span></p>
+		<div id="output" class="hide"></div>
+		<button type="button" onclick="stopRecording()">Stop and process</button>
 		<div class="textwrapper"><textarea rows="30" cols="100%"
-                                           style="height:1em;" id="text" name="text"></textarea></div>
+										   style="height:1em;" id="text" name="text"></textarea></div>
+		
         <script type="text/javascript" src="/static/js/my_record.js"></script>
 		<script>
 			var observe;
