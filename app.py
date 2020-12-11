@@ -10,6 +10,13 @@ from service import w2l
 
 app = Flask(__name__)
 app.secret_key = "abc_xyz"
+# CORS(app)
+
+# @app.route('/foo', methods=['POST'])
+# @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+# def foo():
+#     return "request.json['inputVar']"
+
 app.config['UPLOAD_FOLDER'] = os.getcwd() + '/static/audios/'
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.mkdir(app.config['UPLOAD_FOLDER'])

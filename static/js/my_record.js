@@ -13,7 +13,7 @@ var stream_obj = navigator.mediaDevices.getUserMedia(constraints);
 var next = true;
 setInterval(function() {
     if(next === true) {
-        action.innerHTML = "<small>Please speak anything in VietNamese</small>";
+        action.innerHTML = "YÊN LẶNG QUÁ, NÓI ĐI NÀO!";
         runSpeechRecognition();
     }
 }, 0);
@@ -68,15 +68,19 @@ function createDownloadLink(blob) {
     xhr.onreadystatechange = function() { // Call a function when the state changes.
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             // Request finished. Do processing here.
-            // alert("tải lên thành công");
-            var myurl = "https://"+dbHost+"/speech_to_text";
+            var myurl = "/speech_to_text";
             $.get(myurl, function(data, status){
-                document.getElementById('text').value += data + " ";
+                if(data === ""){
+                    // setTimeout(function() { alert("Nói rõ lên nào!"); }, 2000);
+                    alert("Nói rõ lên nào!");
+                }else{
+                    document.getElementById('text').value += data + " ";
+                }
                 next = true;
             });
         }
     }
-    xhr.open("POST", "https://"+dbHost+"/save_audios", true);
+    xhr.open("POST", "/save_audios", true);
     xhr.send(fd);
     
     // 
@@ -102,11 +106,11 @@ function runSpeechRecognition() {
     //     console.log('Speech has been detected');
     //   }
     recognition.onspeechstart = function() {
-        action.innerHTML = "<small>Speech detected - we are listenning ...</small>";
+        action.innerHTML = "<small>ĐANG LẮNG NGHE BẠN NÓI.</small>";
         startRecording();
     };
     recognition.onspeechend = function() {
-        action.innerHTML = "<small>stopped listening, hope you are done...</small>";
+        action.innerHTML = "<small>DỪNG LẮNG NGHE, HI VỌNG BẠN ĐÃ NÓI XONG - ĐANG SPEECH TO TEXT....</small>";
         recognition.abort();
         stopRecording();
     };
