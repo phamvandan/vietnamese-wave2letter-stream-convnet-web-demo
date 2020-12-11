@@ -13,6 +13,7 @@ var stream_obj = navigator.mediaDevices.getUserMedia(constraints);
 var next = true;
 setInterval(function() {
     if(next === true) {
+        action.innerHTML = "<small>Please speak anything in VietNamese</small>";
         runSpeechRecognition();
     }
 }, 0);
@@ -21,7 +22,7 @@ function startRecording() {
     console.log("start recording");
     var constraints = {audio: true, video: false};
     navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
-        console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
+        // console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
         audioContext = new AudioContext();
         /*  assign to gumStream for later use  */
         gumStream = stream;
@@ -33,7 +34,7 @@ function startRecording() {
         */
         rec = new Recorder(input, {numChannels: 1});
 //        //start the recording process
-        console.log("typeof rec");
+        // console.log("typeof rec");
         console.log(typeof rec);
         rec.record();
 
@@ -64,14 +65,21 @@ function createDownloadLink(blob) {
     let xhr = new XMLHttpRequest();
     var fd = new FormData();
     fd.append("audio_data", blob, filename);
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Request finished. Do processing here.
+            // alert("tải lên thành công");
+            var myurl = "https://"+dbHost+"/speech_to_text";
+            $.get(myurl, function(data, status){
+                document.getElementById('text').value += data + " ";
+                next = true;
+            });
+        }
+    }
     xhr.open("POST", "https://"+dbHost+"/save_audios", true);
     xhr.send(fd);
-    var myurl = "https://"+dbHost+"/speech_to_text";
-    $.get(myurl, function(data, status){
-        document.getElementById('text').value += data + " ";
-    });
-    next = true;
-    // alert("tải lên thành công");
+    
+    // 
     // window.location = "/record_audio";
 //    }else{
 //        alert("Chưa đủ file thu âm!");
@@ -90,8 +98,11 @@ function runSpeechRecognition() {
     next = false;
     var recognition = new SpeechRecognition();
     // This runs when the speech recognition service starts
-    recognition.onstart = function() {
-        action.innerHTML = "<small>listening, please speak...</small>";
+    // recognition.onspeechstart = function() {
+    //     console.log('Speech has been detected');
+    //   }
+    recognition.onspeechstart = function() {
+        action.innerHTML = "<small>Speech detected - we are listenning ...</small>";
         startRecording();
     };
     recognition.onspeechend = function() {

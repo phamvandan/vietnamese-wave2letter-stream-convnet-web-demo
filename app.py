@@ -35,8 +35,14 @@ def upload_file():
 from pydub import AudioSegment
 
 def convert_to_wav(filepath):
-    new_name = filepath.split(".")[0]+".wav"
-    AudioSegment.from_file(file=filepath, sample_width=2, channels=1, frame_rate=16000).export(new_name, format='wav')
+    print("converting....")
+    new_name = filepath.split(".")[0]+"_.wav"
+    wav_file = AudioSegment.from_file(file=filepath)
+    wav_file = wav_file.set_frame_rate(16000)
+    wav_file = wav_file.set_sample_width(2)
+    wav_file = wav_file.set_channels(1)
+    wav_file.export(new_name, bitrate="256", format='wav')
+    print(" end")
     return new_name
 
 @app.route("/save_file_from_upload", methods=['POST'])
@@ -54,7 +60,7 @@ def save_file_from_upload():
     os.remove(path_to_file)
     path_to_file = new_name
     text = w2l.process_file(path_to_file)
-    os.remove(path_to_file)
+    #os.remove(path_to_file)
     return text
 
 @app.route("/record_audio", methods=['POST', 'GET'])
@@ -64,7 +70,7 @@ def record_audio():
 import time
 @app.route("/speech_to_text", methods=['GET'])
 def speech_to_text():
-    time.sleep(1)
+    # time.sleep(1)
     print("Processing...")
     path_to_file = os.path.join(session["upload_folder"], str(session["save_index"]) + ".wav")
     text = w2l.process_file(path_to_file)
@@ -91,6 +97,6 @@ def save_audios():
 
 if __name__ == "__main__":
     app.debug = True
-    # app.run(host="0.0.0.0", port=5001, ssl_context=('cert.pem', 'key.pem'))
-    app.run(host="0.0.0.0", port=5001)
+    app.run(host="0.0.0.0", port=5001, ssl_context=('cert.pem', 'key.pem'))
+    # app.run(host="0.0.0.0", port=5001)
 

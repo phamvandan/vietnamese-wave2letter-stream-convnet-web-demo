@@ -45,7 +45,8 @@
 	</head>
 	<body >
 		<h2>VietNamese Speech to Text FROM UPLOADING FILE</h2>
-        <p>*.wav, *.flac, *.mp3</p>
+		<p>*.wav, *.flac, *.mp3</p>
+		<button id="stream" type="button" onclick="location.href='/record_audio'">Record Streaming</button>
         <form id="upload-file" method="post" enctype="multipart/form-data">
                 <input type="file" id="filename" name="filename">
 				<button id="upload-file-btn" type="button">Upload</button>
@@ -65,7 +66,6 @@
 						processData: false,
 						success: function(data) {
 							document.getElementById("text").value = data;
-							alert(data);
 						},
 					});
 				});

@@ -7,7 +7,7 @@ from subprocess import Popen, PIPE
 
 class w2l_processing:
     def __init__(self):
-        self.model_path = "/root/src/model"
+        self.model_path = "/root/src/vietnamese-wave2letter-stream-convnet-web-demo/model"
         self.w2l_bin = "/root/wav2letter/build/inference/inference/examples/interactive_streaming_asr_example"
         self.w2l_process = Popen(['{} --input_files_base_path={}'.format(self.w2l_bin, self.model_path)],
                             stdin=PIPE, stdout=PIPE, stderr=PIPE,shell=True)
@@ -21,15 +21,19 @@ class w2l_processing:
         while True:
             #     # read from process stdout
             output = self.w2l_process.stdout.readline()
-            if b'#finish transcribing\n' in output:
+            #if b'#finish transcribing\n' in output:
                 #         # finish transcribing an audio
-                print("FINISHING")
-                break
+             #   print("FINISHING")
+                #break
+            # print(output)
             output = output.decode('utf-8')
-            print(output)
             if not skip:
                 output = output.split(",")[-1].replace("\n", "").strip()
                 text += " " + output
+            #print(text)
+            if "#finish transcribing" in text:
+                text = text.split("#finish transcribing")[0]
+                break
             if "transcription" in output:
                 skip = False
         text = text.strip()
