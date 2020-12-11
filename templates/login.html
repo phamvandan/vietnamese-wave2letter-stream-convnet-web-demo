@@ -8,27 +8,52 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/static/css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="/static/css/lg.css">
 </head>
 <body>
-<form action="init_and_redirect" autocomplete="on" id="u_name">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <div class="container">
-        <label for="u_name"><b>Username</b></label>
-        <input type="text" placeholder="User name:" name="user_name" required>
-<!--        <label for="u_name">Chọn id</label>-->
-<!--        <select name="id_1" id="id_1">-->
-<!--            {% for id in list_id %}-->
-<!--            <option value={{id}}>{{id}}</option>-->
-<!--            {% endfor %}-->
-<!--        </select>-->
-<!--        <select name="id_2" id="id_2">-->
-<!--            {% for id in list_id %}-->
-<!--            <option value={{id}}>{{id}}</option>-->
-<!--            {% endfor %}-->
-<!--        </select>-->
-        <button type="submit" onclick="">Record</button>
-    </div>
-</form>
+	<!-- Main Content -->
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info">
+				<span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
+				<h4 class="company_title">Your Company Logo</h4>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+						<h2>Log In</h2>
+					</div>
+					<div class="row">
+                        <!-- <form action="init_and_redirect" autocomplete="on" id="u_name"></form> -->
+						<form control="" class="form-group" action="init_and_redirect" autocomplete="on" id="u_name">
+							<div class="row">
+								<input type="text" name="user_name" id="username" class="form__input" placeholder="Username" required>
+							</div>
+							<div class="row">
+								<!-- <span class="fa fa-lock"></span> -->
+								<input type="password" name="password" id="password" class="form__input" placeholder="Password">
+							</div>
+							<div class="row">
+								<input type="checkbox" name="remember_me" id="remember_me" class="">
+								<label for="remember_me">Remember Me!</label>
+							</div>
+							<div class="row">
+                                <!-- <button type="submit" class="" onclick="">Record</button> -->
+								<input type="submit" value="Submit" class="btn">
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<p>Don't have an account? <a href="#">Register Here</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer -->
+	<div class="container-fluid text-center footer">
+		Coded with &hearts; by <a href="https://bit.ly/yinkaenoch">Yinka.</a></p>
+	</div>
 </body>
 </html>

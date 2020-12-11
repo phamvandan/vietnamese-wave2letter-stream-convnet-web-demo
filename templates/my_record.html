@@ -42,11 +42,17 @@
         <script type="text/javascript" src="/static/js/config.js"></script>
         <script type="text/javascript" src="/static/js/ajax_lib.js"></script>
 		<script type="text/javascript" src="/static/js/recorder.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	</head>
 	<body onload="init();">
-		<h2>Speech to Text</h2>
-        <p>Click on the below button and speak something...</p>
-        <p><button type="button" onclick="runSpeechRecognition()">Speech to Text</button> &nbsp; <span id="action"></span></p>
+		<h2>Vietnamese Speech to Text</h2>
+		<!-- <p>Click on the below button and speak something...</p> -->
+		<div class="alert alert-danger" id="success-alert">
+			<!-- <button type="button" class="close" data-dismiss="alert">x</button> -->
+			<strong>BẠN HÃY NÓI TO VÀ RÕ LÊN TÍ NỮA! </strong>.
+		  </div>
+        <p><button type="button" onclick="runSpeechRecognition()">Refresh</button> &nbsp; <span id="action"></span></p>
         <div id="output" class="hide"></div>
 		<div class="textwrapper"><textarea rows="30" cols="100%"
                                            style="height:1em;" id="text" name="text"></textarea></div>

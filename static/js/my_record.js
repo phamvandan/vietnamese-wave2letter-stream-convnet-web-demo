@@ -10,6 +10,10 @@ var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext; //audio context to help us record
 var constraints = {audio: true, video: false};
 var stream_obj = navigator.mediaDevices.getUserMedia(constraints);
+$(document).ready(function() {
+    $("#success-alert").hide();
+  });
+
 var next = true;
 setInterval(function() {
     if(next === true) {
@@ -58,6 +62,7 @@ function stopRecording() {
 }
 
 
+
 function createDownloadLink(blob) {
     console.log("exporting");
     var filename = ".wav";
@@ -72,7 +77,10 @@ function createDownloadLink(blob) {
             $.get(myurl, function(data, status){
                 if(data === ""){
                     // setTimeout(function() { alert("Nói rõ lên nào!"); }, 2000);
-                    alert("Nói rõ lên nào!");
+                    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#success-alert").slideUp(500);
+                    });
+                    // alert("Nói rõ lên nào!");
                 }else{
                     document.getElementById('text').value += data + " ";
                 }
